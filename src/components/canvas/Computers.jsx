@@ -1,31 +1,45 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
+import React, { Suspense, useEffect, useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Preload, useGLTF, Environment } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
+
 const Computers = ({ isMobile }) => {
-  const computer = useGLTF("./desktop_pc/scene.gltf");
+  const computer = useGLTF("./space/scene.gltf");
+  const groupRef = useRef();
+
+
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.2;
+      groupRef.current.rotation.x += delta * 0.2;
+      groupRef.current.rotation.z += delta * 0.2;
+    }
+  });
 
   return (
-    <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
+    <>
+      <hemisphereLight intensity={0.6} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
         penumbra={1}
         intensity={1}
         castShadow
-        shadow-mapSize={1024}
+        shadow-mapSize={10}
       />
       <pointLight intensity={1} />
-      <primitive
-        object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
-      />
-    </mesh>
+      
+      <group ref={groupRef} position={[0, -1.5, 0]}>
+  <primitive
+    object={computer.scene}
+    scale={isMobile ? 1.4 : 1.5}  // Smaller scale to fit better
+    position={[-3, -2, -1]}        // Center the model
+    rotation={[-0, 5, 1]} // Initial rotation is fine
+  />
+</group>
+
+    </>
   );
 };
 
@@ -33,32 +47,19 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    const handleChange = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   return (
     <Canvas
-      frameloop='demand'
+      frameloop="always"
       shadows
       dpr={[1, 2]}
-      camera={{ position: [20, 3, 5], fov: 25 }}
+      camera={{ position: [0, 0, 10], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
@@ -69,7 +70,6 @@ const ComputersCanvas = () => {
         />
         <Computers isMobile={isMobile} />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );
