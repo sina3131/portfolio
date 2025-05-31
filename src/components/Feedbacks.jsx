@@ -13,32 +13,34 @@ const FeedbackCard = ({
   designation,
   company,
   image,
+  title,
 }) => (
   <motion.div
     variants={fadeIn("", "spring", index * 0.5, 0.75)}
-    className='bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full'
+    className='bg-black-200 p-6 rounded-3xl w-full max-w-md flex flex-col'
   >
-    <p className='text-white font-black text-[48px]'>"</p>
+    {/* Card Title */}
+    <h3 className='text-white text-xl font-semibold mb-4'>{title}</h3>
 
-    <div className='mt-1'>
-      <p className='text-white tracking-wider text-[18px]'>{testimonial}</p>
+    {/* Testimonial Text */}
+    <p className='text-white tracking-wider text-[16px]'>{testimonial}</p>
 
-      <div className='mt-7 flex justify-between items-center gap-1'>
-        <div className='flex-1 flex flex-col'>
-          <p className='text-white font-medium text-[16px]'>
-            <span className='blue-text-gradient'>@</span> {name}
-          </p>
-          <p className='mt-1 text-secondary text-[12px]'>
-            {designation} of {company}
-          </p>
-        </div>
-
-        <img
-          src={image}
-          alt={`feedback_by-${name}`}
-          className='w-10 h-10 rounded-full object-cover'
-        />
+    {/* Footer Info */}
+    <div className='mt-6 flex justify-between items-center gap-4'>
+      <div className='flex-1 flex flex-col'>
+        <p className='text-white font-medium text-[14px]'>
+          <span className='blue-text-gradient'>@</span> {name}
+        </p>
+        <p className='mt-1 text-secondary text-[12px]'>
+          {designation} {company}
+        </p>
       </div>
+
+      <img
+        src={image}
+        alt={`feedback_by-${name}`}
+        className='w-10 h-10 rounded-full object-cover'
+      />
     </div>
   </motion.div>
 );
@@ -50,11 +52,11 @@ const Feedbacks = () => {
         className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
       >
         <motion.div variants={textVariant()}>
-          <p className={styles.sectionSubText}>Other projects</p>
-          <h2 className={styles.sectionHeadText}>AI and ML.</h2>
+          <h2 className={styles.sectionHeadText}>Educations</h2>
         </motion.div>
       </div>
-      <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
+      <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-row flex-wrap gap-7 justify-center`}>
+
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
