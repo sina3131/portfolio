@@ -27,7 +27,10 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+<div className="pointer-events-none absolute inset-0">
+  <ComputersCanvas />
+</div>
+
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>

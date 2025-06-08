@@ -6,6 +6,7 @@ import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import {FaLinkedin} from "react-icons/fa";
 
 const Contact = () => {
   const formRef = useRef();
@@ -73,7 +74,7 @@ const Contact = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
       >
-        <p className={styles.sectionSubText}>Let’s make internet magic together.” ✨🧙‍♂️</p>
+        <p className={styles.sectionSubText}>Whether it’s business 💼, banter 😄, or a wild tale involving a duck 🦆, a trampoline 🤸, and a saxophone 🎷 — I’m all ears 👂. I promise I don’t bite ✨🧙‍♂️</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
 
         <form
@@ -122,6 +123,17 @@ const Contact = () => {
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
+        <div className="mt-10 flex justify-center items-center">
+  <a
+    href="https://www.linkedin.com/in/alisina-faramarzi-057ba4210/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-400 hover:text-white transition duration-300"
+  >
+    <FaLinkedin size={40} />
+  </a>
+</div>
+
       </motion.div>
 
       <motion.div
@@ -131,6 +143,7 @@ const Contact = () => {
         <EarthCanvas />
       </motion.div>
     </div>
+    
   );
 };
 
