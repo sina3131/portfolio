@@ -53,6 +53,8 @@ const ComputersCanvas = () => {
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+  
+
 
   return (
     <Canvas
@@ -61,7 +63,15 @@ const ComputersCanvas = () => {
       dpr={[1, 2]}
       camera={{ position: [0, 0, 10], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-    style={{ pointerEvents: "none" }}
+      style={{
+        pointerEvents: "none",
+        width: "100vw",
+        height: "100vh",
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }}
+      key={Date.now()}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
