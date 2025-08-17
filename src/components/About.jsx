@@ -54,11 +54,9 @@ const About = () => {
     <div className='flex-1 space-y-5'>
       <h2 className='text-2xl font-bold font-tech'>Technical Expertise</h2>
       <p className='text-secondary text-[17px] leading-[30px]'>
-        I specialize in building intelligent systems using machine learning, AI, and modern data tools. My work focuses on developing predictive models, designing clean and efficient data pipelines, and deploying scalable solutions using tools like Docker and Django. I've worked on fine-tuning large language models such as LLaMA 3 and Mistral, and I'm experienced with techniques like Retrieval-Augmented Generation (RAG) and neural networks for supervised learning tasks.
-      </p>
+      I spend my days building smart systems with machine learning, AI, and a bunch of modern data tools. Think predictive models that actually predict, data pipelines that don’t break at 2 a.m., and solutions that scale without drama—thanks to tools like Docker and Django. I've had fun fine-tuning large language models like LLaMA 3 and Mistral, and I’ve worked with techniques like Retrieval-Augmented Generation (RAG) and good old neural networks for tasks where teaching machines to learn from examples is the name of the game.      </p>
       <p className='text-secondary text-[17px] leading-[30px]'>
-        My background includes hands-on experience in cybersecurity, where I completed an ethical hacking and penetration testing course. Through practical projects and Capture The Flag (CTF) challenges, I developed skills in reconnaissance, exploitation, privilege escalation, and breach response. I also worked on real-world scenarios involving vulnerability assessment, incident response, and web application security.
-      </p>
+      I’ve also spent some time in the world of cybersecurity, where I got my hands dirty with ethical hacking and penetration testing. I tackled real challenges through CTFs (Capture The Flag) and hands-on projects, picking up skills like digging around for system weaknesses, breaking in (ethically, of course), escalating privileges, and figuring out how to respond when things go sideways. I’ve worked through real-world scenarios too—everything from spotting vulnerabilities to handling incidents and locking down web apps.      </p>
     </div>
 
 <div className='flex-1 relative'>
